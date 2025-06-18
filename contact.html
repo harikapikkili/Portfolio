@@ -1,0 +1,337 @@
+<!-- filepath: d:\Harika Pro\portfolio\contact.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Contact Me</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"/>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Poppins', 'Segoe UI', Arial, sans-serif;
+      background: linear-gradient(120deg, #e0eaff 60%, #b3c6ff 100%);
+      color: #222;
+      min-height: 100vh;
+    }
+    .navbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: rgba(255,255,255,0.12);
+      padding: 1.2rem 4vw;
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      backdrop-filter: blur(8px);
+      margin-bottom: 2.5rem;
+      box-shadow: 0 8px 32px rgba(58,102,224,0.10);
+    }
+    .logo {
+      font-size: 2rem;
+      font-weight: 700;
+      color: #3a66e0;
+      letter-spacing: 2px;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      text-shadow: 0 2px 8px rgba(58,102,224,0.08);
+    }
+    nav {
+      display: flex;
+      align-items: center;
+      flex: 1;
+      justify-content: center;
+      gap: 0.5rem;
+    }
+    nav a {
+      color:#3a66e0;
+      text-decoration:none;
+      margin:0 1.2rem;
+      font-weight:600;
+      font-size:1.08rem;
+      position: relative;
+      transition: color 0.2s;
+      letter-spacing: 0.5px;
+      padding: 2px 0;
+    }
+    nav a:after {
+      content: '';
+      display: block;
+      width: 0;
+      height: 2px;
+      background: #3a66e0;
+      transition: width .3s;
+      position: absolute;
+      bottom: -4px;
+      left: 0;
+    }
+    nav a:hover:after {
+      width: 100%;
+    }
+    nav a:hover {
+      color: #25408f;
+    }
+    .cta-btn {
+      background: #3a66e0;
+      color: #fff;
+      padding: 0.6rem 1.4rem;
+      border-radius: 2rem;
+      font-weight: 600;
+      text-decoration: none;
+      margin-left: 1.5rem;
+      transition: background 0.2s, box-shadow 0.2s;
+      box-shadow: 0 2px 12px rgba(58,102,224,0.10);
+      border: none;
+      outline: none;
+      font-size: 1.05rem;
+      letter-spacing: 0.5px;
+    }
+    .cta-btn:hover {
+      background: #25408f;
+      box-shadow: 0 4px 18px rgba(58,102,224,0.18);
+    }
+    .contact-container {
+      max-width: 950px;
+      margin: 40px auto;
+      background: #fff;
+      border-radius: 28px;
+      box-shadow: 0 8px 32px rgba(58,102,224,0.13);
+      padding: 48px 40px 40px 40px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 2.5rem;
+      align-items: flex-start;
+      justify-content: center;
+      animation: fadeIn 1.2s cubic-bezier(.4,2,.6,1);
+    }
+    .contact-info, .contact-form-section {
+      flex: 1 1 340px;
+      min-width: 300px;
+      max-width: 420px;
+    }
+    .contact-title {
+      color: #3a66e0;
+      font-size: 2.2rem;
+      margin-bottom: 10px;
+      font-weight: 800;
+      letter-spacing: 1px;
+      display: flex;
+      align-items: center;
+      gap: 0.7rem;
+      background: linear-gradient(to right, #3a66e0, #7F8CFF);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .contact-desc {
+      color: #5a6fa7;
+      font-size: 1.08rem;
+      margin-bottom: 2.2rem;
+    }
+    .contact-form {
+      display: flex;
+      flex-direction: column;
+      gap: 1.1rem;
+    }
+    .contact-form label {
+      font-weight: 600;
+      color: #3a66e0;
+      margin-bottom: 0.2rem;
+      text-align: left;
+    }
+    .contact-form input,
+    .contact-form textarea {
+      padding: 0.8rem 1rem;
+      border-radius: 1.2rem;
+      border: 1.5px solid #e0eaff;
+      font-size: 1rem;
+      background: #f7faff;
+      color: #222;
+      outline: none;
+      transition: border 0.2s, box-shadow 0.2s;
+      resize: none;
+      box-shadow: 0 2px 8px rgba(58,102,224,0.07);
+    }
+    .contact-form input:focus,
+    .contact-form textarea:focus {
+      border: 1.5px solid #3a66e0;
+      background: #fff;
+      box-shadow: 0 4px 16px rgba(58,102,224,0.13);
+    }
+    .contact-form textarea {
+      min-height: 90px;
+      max-height: 200px;
+    }
+    .contact-form button {
+      background: linear-gradient(90deg, #3a66e0 60%, #b3c6ff 100%);
+      color: #fff;
+      border: none;
+      border-radius: 1.5rem;
+      padding: 0.9rem 2.2rem;
+      font-size: 1.08rem;
+      font-weight: 700;
+      cursor: pointer;
+      margin-top: 0.5rem;
+      box-shadow: 0 2px 8px rgba(58,102,224,0.10);
+      transition: background 0.2s, box-shadow 0.2s;
+    }
+    .contact-form button:hover {
+      background: #25408f;
+      box-shadow: 0 4px 18px rgba(58,102,224,0.18);
+    }
+    .info-list {
+      list-style: none;
+      padding: 0;
+      margin: 0 0 2rem 0;
+      display: flex;
+      flex-direction: column;
+      gap: 1.2rem;
+    }
+    .info-item {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      font-size: 1.08rem;
+      color: #25408f;
+      background: #f7faff;
+      border-radius: 1.1rem;
+      padding: 0.7rem 1rem;
+      box-shadow: 0 2px 8px rgba(58,102,224,0.06);
+    }
+    .info-icon {
+      background: #e0eaff;
+      color: #3a66e0;
+      border-radius: 50%;
+      width: 2.3rem;
+      height: 2.3rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.3rem;
+      box-shadow: 0 2px 8px rgba(58,102,224,0.08);
+    }
+    .contact-socials {
+      display: flex;
+      gap: 1.2rem;
+      margin-top: 1.2rem;
+    }
+    .contact-socials a {
+      background: #fff;
+      border-radius: 0.7rem;
+      width: 2.2rem;
+      height: 2.2rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #3a66e0;
+      font-size: 1.2rem;
+      box-shadow: 0 2px 8px rgba(58,102,224,0.07);
+      transition: background 0.2s, color 0.2s, transform 0.2s;
+      text-decoration: none;
+    }
+    .contact-socials a:hover {
+      background: #3a66e0;
+      color: #fff;
+      transform: scale(1.13) rotate(-8deg);
+    }
+    @media (max-width: 900px) {
+      .contact-container {
+        flex-direction: column;
+        gap: 2rem;
+        padding: 30px 10px;
+      }
+      .contact-info, .contact-form-section {
+        max-width: 100%;
+      }
+    }
+    @media (max-width: 600px) {
+      .navbar {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 0.7rem;
+        padding: 0.7rem 1vw;
+      }
+      .logo {
+        font-size: 1.3rem;
+      }
+      nav a {
+        margin: 0 0.5rem;
+        font-size: 1rem;
+      }
+      .cta-btn {
+        font-size: 0.98rem;
+        padding: 0.5rem 1.1rem;
+      }
+      .contact-container {
+        padding: 14px 2vw;
+      }
+      .contact-title {
+        font-size: 1.2rem;
+      }
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(40px);}
+      to { opacity: 1; transform: none;}
+    }
+  </style>
+</head>
+<body>
+  <div class="navbar">
+    <div class="logo"><i class="fa-solid fa-laptop-code"></i> Harika</div>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="about.html">About</a>
+      <a href="academic.html">Academics</a>
+      <a href="skills.html">Skills</a>
+      <a href="projects.html">Projects</a>
+      <a href="certificate.html">Certificates</a>
+      <a href="contact.html">Contact</a>
+    </nav>
+    <a href="contact.html" class="cta-btn">Let's Talk</a>
+  </div>
+  <div class="contact-container">
+    <div class="contact-info">
+      <div class="contact-title"><i class="fa-solid fa-envelope"></i> Contact Me</div>
+      <div class="contact-desc">
+        I'd love to hear from you! Please fill out the form or use the info below to get in touch.
+      </div>
+      <ul class="info-list">
+        <li class="info-item">
+          <span class="info-icon"><i class="fa-solid fa-envelope"></i></span>
+          <span>Email: <a href="mailto:pikkiliharika387@gmail.com" style="color:#25408f;text-decoration:underline;">pikkiliharika387@gmail.com</a></span>
+        </li>
+        <li class="info-item">
+          <span class="info-icon"><i class="fa-solid fa-phone"></i></span>
+          <span>Phone: <a href="tel:+918340925038" style="color:#25408f;text-decoration:underline;">+91-8340925038</a></span>
+        </li>
+        <li class="info-item">
+          <span class="info-icon"><i class="fa-solid fa-location-dot"></i></span>
+          <span>Vijayawada, India</span>
+        </li>
+      </ul>
+      <div class="contact-socials">
+        <a href="https://www.linkedin.com/in/harika387" title="LinkedIn" target="_blank"><i class="fab fa-linkedin-in"></i></a>
+        <a href="https://github.com/harika387" title="GitHub" target="_blank"><i class="fab fa-github"></i></a>
+        <a href="#" title="Twitter"><i class="fab fa-twitter"></i></a>
+      </div>
+    </div>
+    <div class="contact-form-section">
+      <h2 style="color:#3a66e0; font-size:1.4rem; margin-bottom:1.2rem; font-weight:700;"><i class="fa-solid fa-paper-plane"></i> Get in Touch</h2>
+      <form class="contact-form" onsubmit="event.preventDefault(); alert('Message sent! Thank you 😊'); this.reset();">
+        <label for="name">Name</label>
+        <input type="text" id="name" name="name" required />
+
+        <label for="email">Email</label>
+        <input type="email" id="email" name="email" required />
+
+        <label for="message">Message</label>
+        <textarea id="message" name="message" placeholder="Write your message here..." required></textarea>
+
+        <button type="submit"><i class="fa-solid fa-paper-plane"></i> Send Message</button>
+      </form>
+    </div>
+  </div>
+</body>
+</html>

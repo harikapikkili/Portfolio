@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Skills - Harika</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"/>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Poppins', 'Segoe UI', Arial, sans-serif;
+      background: linear-gradient(120deg, #e0eaff 60%, #b3c6ff 100%);
+      color: #222;
+      min-height: 100vh;
+    }
+    .navbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: rgba(255,255,255,0.12);
+      padding: 1.2rem 4vw;
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      backdrop-filter: blur(8px);
+      margin-bottom: 2.5rem;
+      box-shadow: 0 8px 32px rgba(58,102,224,0.10);
+    }
+    .logo {
+      font-size: 2rem;
+      font-weight: 700;
+      color: #3a66e0;
+      letter-spacing: 2px;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      text-shadow: 0 2px 8px rgba(58,102,224,0.08);
+    }
+    nav {
+      display: flex;
+      align-items: center;
+      flex: 1;
+      justify-content: center;
+      gap: 0.5rem;
+    }
+    nav a {
+      color: #3a66e0;
+      text-decoration: none;
+      margin: 0 1.2rem;
+      font-weight: 600;
+      font-size: 1.08rem;
+      position: relative;
+      transition: color 0.2s;
+      letter-spacing: 0.5px;
+      padding: 2px 0;
+    }
+    nav a:after {
+      content: '';
+      display: block;
+      width: 0;
+      height: 2px;
+      background: #3a66e0;
+      transition: width .3s;
+      position: absolute;
+      bottom: -4px;
+      left: 0;
+    }
+    nav a:hover:after {
+      width: 100%;
+    }
+    nav a:hover {
+      color: #25408f;
+    }
+    .cta-btn {
+      background: #3a66e0;
+      color: #fff;
+      padding: 0.6rem 1.4rem;
+      border-radius: 2rem;
+      font-weight: 600;
+      text-decoration: none;
+      margin-left: 1.5rem;
+      transition: background 0.2s, box-shadow 0.2s;
+      box-shadow: 0 2px 12px rgba(58,102,224,0.10);
+      border: none;
+      outline: none;
+      font-size: 1.05rem;
+      letter-spacing: 0.5px;
+    }
+    .cta-btn:hover {
+      background: #25408f;
+      box-shadow: 0 4px 18px rgba(58,102,224,0.18);
+    }
+    .hero {
+      padding: 60px 20px;
+      background: linear-gradient(120deg, #e0eaff 60%, #b3c6ff 100%);
+      border-top: 6px solid #3a66e0;
+      border-radius: 24px;
+      box-shadow: 0 8px 24px rgba(58, 102, 224, 0.10);
+      max-width: 1100px;
+      margin: 0 auto 40px auto;
+      animation: fadeIn 1.2s cubic-bezier(.4,2,.6,1);
+    }
+    h2 {
+      color: #3a66e0;
+      margin-bottom: 40px;
+      text-align: center;
+      font-size: 2.3rem;
+      letter-spacing: 1px;
+      font-weight: 700;
+      background: linear-gradient(to right, #3a66e0, #7F8CFF);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    h3 {
+      color: #00796b;
+      text-align: center;
+      margin-bottom: 30px;
+      font-size: 2rem;
+      letter-spacing: 1px;
+      font-weight: 700;
+    }
+    .internship-card {
+      background: linear-gradient(145deg, #e0f7fa, #ffffff);
+      border-left: 6px solid #00796b;
+      border-radius: 16px;
+      padding: 30px 30px;
+      box-shadow: 0 12px 30px rgba(0, 121, 107, 0.13);
+      max-width: 750px;
+      margin: 0 auto 40px auto;
+      color: #004d40;
+      animation: fadeIn 1.2s cubic-bezier(.4,2,.6,1);
+    }
+    .internship-card h3 {
+      margin-top: 0;
+      color: #00796b;
+      font-size: 1.6rem;
+      font-weight: 700;
+    }
+    .internship-card p {
+      margin: 0 0 0.5rem 0;
+      font-size: 1.08rem;
+      color: #004d40;
+    }
+    .internship-card p[style*="italic"] {
+      color: #555;
+    }
+    .skills-grid {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 2.5rem;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+    .skill-card {
+      background: #fff;
+      border-radius: 18px;
+      box-shadow: 0 4px 18px rgba(58,102,224,0.08);
+      padding: 32px 36px;
+      min-width: 180px;
+      text-align: center;
+      transition: transform 0.25s cubic-bezier(.4,2,.6,1), box-shadow 0.25s;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .skill-card:before {
+      content: '';
+      position: absolute;
+      top: -40px;
+      right: -40px;
+      width: 80px;
+      height: 80px;
+      background: linear-gradient(135deg, #e0eaff 60%, #b3c6ff 100%);
+      border-radius: 50%;
+      opacity: 0.25;
+      z-index: 0;
+    }
+    .skill-icon {
+      font-size: 3.2rem;
+      margin-bottom: 14px;
+      transition: transform 0.3s cubic-bezier(.4,2,.6,1);
+      display: inline-block;
+      z-index: 1;
+      position: relative;
+    }
+    .skill-card:hover .skill-icon {
+      transform: translateY(-12px) scale(1.18) rotate(-8deg);
+      box-shadow: 0 8px 24px rgba(58,102,224,0.13);
+    }
+    .skill-title {
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: #3a66e0;
+      margin-bottom: 8px;
+      letter-spacing: 0.5px;
+      z-index: 1;
+      position: relative;
+    }
+    .skill-desc {
+      font-size: 1rem;
+      color: #1f2937;
+      margin-bottom: 0;
+      z-index: 1;
+      position: relative;
+    }
+    @media (max-width: 900px) {
+      .skills-grid {
+        gap: 1.2rem;
+      }
+      .skill-card {
+        min-width: 140px;
+        padding: 22px 12px;
+      }
+    }
+    @media (max-width: 600px) {
+      .navbar {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 0.7rem;
+        padding: 0.7rem 1vw;
+      }
+      .logo {
+        font-size: 1.3rem;
+      }
+      nav a {
+        margin: 0 0.5rem;
+        font-size: 1rem;
+      }
+      .cta-btn {
+        font-size: 0.98rem;
+        padding: 0.5rem 1.1rem;
+      }
+      .hero {
+        padding: 18px 4vw;
+      }
+      h2 {
+        font-size: 1.3rem;
+      }
+      h3 {
+        font-size: 1.1rem;
+      }
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(40px);}
+      to { opacity: 1; transform: none;}
+    }
+  </style>
+</head>
+<body>
+  <div class="navbar">
+    <div class="logo">
+      <i class="fa-solid fa-laptop-code"></i> Harika
+    </div>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="about.html">About</a>
+      <a href="academic.html">Academics</a>
+      <a href="skills.html">Skills</a>
+      <a href="projects.html">Projects</a>
+      <a href="certificate.html">Certificates</a>
+      <a href="contact.html">Contact</a>
+    </nav>
+    <a href="contact.html" class="cta-btn">Let's Talk</a>
+  </div>
+
+  <div id="skillsSection" class="hero">
+    <h2><i class="fa-solid fa-laptop-code"></i> Experience & Skills</h2>
+
+    <!-- Internship Experience -->
+    <div class="internship-card">
+      <h3><i class="fa-solid fa-briefcase"></i> Internship Experience</h3>
+      <p><strong style="color: #00695c;">Company:</strong> Prodigy Infotech</p>
+      <p><strong style="color: #00695c;">Role:</strong> Web Development Intern</p>
+      <p>Contributed to developing a <span style="color: #004d40; font-weight: 600;">Stopwatch Web Application</span>, enhancing UI/UX skills and gaining practical full-stack web development experience.</p>
+      <p style="font-style: italic; color: #555;">📅 Duration: June 2024 – July 2024</p>
+    </div>
+
+    <!-- Technical Skills -->
+    <h3 style="color: #3a66e0; text-align: center; margin-bottom: 30px; font-size: 2rem; letter-spacing: 1px;">
+      <i class="fa-solid fa-screwdriver-wrench"></i> Technical Skills
+    </h3>
+    <div class="skills-grid">
+      <!-- Python -->
+      <div class="skill-card">
+        <span class="skill-icon" style="color: #3776AB;" title="Python"><i class="fa-brands fa-python"></i></span>
+        <div class="skill-title">Python</div>
+        <div class="skill-desc">Programming Language</div>
+      </div>
+      <!-- JavaScript -->
+      <div class="skill-card">
+        <span class="skill-icon" style="color: #F7DF1E;" title="JavaScript"><i class="fa-brands fa-js"></i></span>
+        <div class="skill-title">JavaScript</div>
+        <div class="skill-desc">Programming Language</div>
+      </div>
+      <!-- C -->
+      <div class="skill-card">
+        <span class="skill-icon" style="color: #00599C;" title="C"><i class="fa-solid fa-c"></i></span>
+        <div class="skill-title">C</div>
+        <div class="skill-desc">Programming Language</div>
+      </div>
+      <!-- HTML5 -->
+      <div class="skill-card">
+        <span class="skill-icon" style="color: #E34F26;" title="HTML5"><i class="fa-brands fa-html5"></i></span>
+        <div class="skill-title">HTML5</div>
+        <div class="skill-desc">Web Markup</div>
+      </div>
+      <!-- CSS3 -->
+      <div class="skill-card">
+        <span class="skill-icon" style="color: #1572B6;" title="CSS3"><i class="fa-brands fa-css3-alt"></i></span>
+        <div class="skill-title">CSS3</div>
+        <div class="skill-desc">Web Styling</div>
+      </div>
+      <!-- Bootstrap -->
+      <div class="skill-card">
+        <span class="skill-icon" style="color: #7952B3;" title="Bootstrap"><i class="fa-brands fa-bootstrap"></i></span>
+        <div class="skill-title">Bootstrap</div>
+        <div class="skill-desc">CSS Framework</div>
+      </div>
+      <!-- Git -->
+      <div class="skill-card">
+        <span class="skill-icon" style="color: #F05032;" title="Git"><i class="fa-brands fa-git-alt"></i></span>
+        <div class="skill-title">Git</div>
+        <div class="skill-desc">Version Control</div>
+      </div>
+      <!-- GitHub -->
+      <div class="skill-card">
+        <span class="skill-icon" style="color: #333;" title="GitHub"><i class="fa-brands fa-github"></i></span>
+        <div class="skill-title">GitHub</div>
+        <div class="skill-desc">Code Hosting</div>
+      </div>
+      <!-- VS Code -->
+      <div class="skill-card">
+        <span class="skill-icon" style="color: #007ACC;" title="VS Code"><i class="fa-solid fa-code"></i></span>
+        <div class="skill-title">VS Code</div>
+        <div class="skill-desc">Code Editor</div>
+      </div>
+      <!-- Figma -->
+      <div class="skill-card">
+        <span class="skill-icon" style="color: #A259FF;" title="Figma"><i class="fa-brands fa-figma"></i></span>
+        <div class="skill-title">Figma</div>
+        <div class="skill-desc">UI/UX Design</div>
+      </div>
+      <!-- Machine Learning -->
+      <div class="skill-card">
+        <span class="skill-icon" style="color: #3a66e0;" title="Machine Learning"><i class="fa-solid fa-robot"></i></span>
+        <div class="skill-title">Machine Learning</div>
+        <div class="skill-desc">AI/ML Basics</div>
+      </div>
+      <!-- DBMS -->
+      <div class="skill-card">
+        <span class="skill-icon" style="color: #3a66e0;" title="DBMS"><i class="fa-solid fa-database"></i></span>
+        <div class="skill-title">DBMS</div>
+        <div class="skill-desc">Databases</div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
+
