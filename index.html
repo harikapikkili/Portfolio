@@ -180,7 +180,7 @@ section{padding:5rem 5%;}
   border-radius:20px;overflow:hidden;
   box-shadow:0 20px 50px rgba(0,0,0,0.1);
 }
-.about-img-box img{width:100%;display:block;object-fit:cover;object-position:center 15%;}
+.about-img-box img{width:100%;display:block;height:auto;max-height:480px;object-fit:cover;object-position:center 12%;}
 .about-orange-box{
   position:absolute;bottom:-20px;right:-20px;
   width:120px;height:120px;
@@ -398,6 +398,14 @@ footer p span{color:var(--orange);}
   nav .nav-links,.nav-btn{display:none;}
   .stats-bar{gap:1rem;}
   .stats-divider{display:none;}
+  .about-img-wrap{max-width:340px;margin:0 auto;}
+  .about-img-box img{max-height:none;object-fit:cover;object-position:center 8%;}
+  .about-orange-box{width:70px;height:70px;bottom:-14px;right:-14px;}
+}
+@media(max-width:480px){
+  .hero-badge.b1{left:-10px;bottom:10px;font-size:0.7rem;padding:0.5rem 0.8rem;}
+  .hero-badge.b2{right:-10px;top:10px;font-size:0.7rem;padding:0.5rem 0.8rem;}
+  .hero-circle{width:230px;height:230px;}
 }
 </style>
 </head>
@@ -478,7 +486,7 @@ footer p span{color:var(--orange);}
   <div class="about-grid reveal">
     <div class="about-img-wrap">
       <div class="about-img-box">
-        <img src="harika.jpg" alt="Harika Pikkili" style="height:420px;"/>
+        <img src="harika.jpg" alt="Harika Pikkili"/>
       </div>
       <div class="about-orange-box"></div>
     </div>
@@ -728,16 +736,18 @@ footer p span{color:var(--orange);}
         <div><div class="c-label">GitHub</div><div class="c-val">github.com/harikapikkili</div></div>
       </a>
     </div>
-    <div class="contact-form">
+    <form class="contact-form" id="contactForm" action="https://formspree.io/f/xojowvbq" method="POST">
       <div class="form-row">
-        <div class="fg"><label>YOUR NAME</label><input type="text" placeholder="John Doe"/></div>
-        <div class="fg"><label>SUBJECT</label><input type="text" placeholder="Job Opportunity"/></div>
+        <div class="fg"><label>YOUR NAME</label><input type="text" name="name" placeholder="John Doe" required/></div>
+        <div class="fg"><label>SUBJECT</label><input type="text" name="subject" placeholder="Job Opportunity" required/></div>
       </div>
-      <div class="fg"><label>EMAIL ADDRESS</label><input type="email" placeholder="hello@company.com"/></div>
-      <div class="fg"><label>MESSAGE</label><textarea placeholder="Tell me about the opportunity or project..."></textarea></div>
-      <button class="btn-send" onclick="alert('Please reach me directly at pikkiliharika387@gmail.com')">Send Message →</button>
-    </div>
+      <div class="fg"><label>EMAIL ADDRESS</label><input type="email" name="email" placeholder="hello@company.com" required/></div>
+      <div class="fg"><label>MESSAGE</label><textarea name="message" placeholder="Tell me about the opportunity or project..." required></textarea></div>
+      <button class="btn-send" type="submit" id="sendBtn">Send Message →</button>
+      <p id="formStatus" style="font-size:0.85rem;font-weight:500;display:none;"></p>
+    </form>
   </div>
+
 </div>
 </section>
 
@@ -779,6 +789,47 @@ window.addEventListener('scroll',()=>{
   navLinks.forEach(a=>{
     a.classList.toggle('active',a.getAttribute('href')==='#'+cur);
   });
+});
+
+// Contact form -> Formspree
+const contactForm = document.getElementById('contactForm');
+const sendBtn = document.getElementById('sendBtn');
+const formStatus = document.getElementById('formStatus');
+
+contactForm.addEventListener('submit', async (e)=>{
+  e.preventDefault();
+  sendBtn.disabled = true;
+  sendBtn.textContent = 'Sending...';
+  formStatus.style.display = 'none';
+
+  try{
+    const response = await fetch(contactForm.action, {
+      method: 'POST',
+      body: new FormData(contactForm),
+      headers: { 'Accept': 'application/json' }
+    });
+
+    if(response.ok){
+      formStatus.textContent = "Thanks! Your message has been sent — I'll get back to you soon.";
+      formStatus.style.color = '#16a34a';
+      formStatus.style.display = 'block';
+      contactForm.reset();
+    } else {
+      const data = await response.json().catch(()=>null);
+      formStatus.textContent = (data && data.errors && data.errors.length)
+        ? data.errors.map(err=>err.message).join(', ')
+        : 'Something went wrong. Please try again or email me directly.';
+      formStatus.style.color = '#dc2626';
+      formStatus.style.display = 'block';
+    }
+  } catch(err){
+    formStatus.textContent = 'Network error — please try again or email me directly.';
+    formStatus.style.color = '#dc2626';
+    formStatus.style.display = 'block';
+  } finally {
+    sendBtn.disabled = false;
+    sendBtn.textContent = 'Send Message →';
+  }
 });
 </script>
 </body>
